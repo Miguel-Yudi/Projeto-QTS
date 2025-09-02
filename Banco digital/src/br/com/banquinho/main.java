@@ -20,7 +20,7 @@ public class main {
 
 		while (rept == true) {
 			System.out.println(
-					"Type 1 to crate a client account or see your client account details \nType 2 to create an account or see informations related to your bank accounts if you're alredy registred client.");
+					"Type 1 to create a client account or see your client account details \nType 2 to create an account or see informations related to your bank accounts if you're alredy registred client.");
 			int choice = input.nextInt();
 			switch (choice) {
 			case 1:
@@ -66,6 +66,7 @@ public class main {
 					} else {
 						System.out.println("Invalid id or cpf");
 					}
+				case 3:
 					break;
 				default:
 					System.out.println("Invalid choice");
