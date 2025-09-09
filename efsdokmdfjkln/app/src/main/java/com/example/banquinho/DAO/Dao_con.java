@@ -77,14 +77,16 @@ public class Dao_con {
 		return null;
 	}
 
-	public void idInf(int id) {
+	public Conta idInf(int id) {
 		for (Conta con : contas) {
 			if (id == con.getNumber())
 			{
 				System.out.println("Account id: " + con.getNumber() + "\n Owner id: " + con.getIdCliente() + "\n Balance: "
 						+ con.getSaldo());
+                                return con;
 			}
 		}
+                return null;
 	}
 	public void idInfCli(int id) {
 		boolean flag = true;

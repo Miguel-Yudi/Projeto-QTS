@@ -26,7 +26,7 @@ public class serCon {
 		daoCon.ListCon();
 	}
 
-	public double Deposito(int id, double deposito) {
+	public Double Deposito(int id, double deposito) {
 		int flag = 0;
                 Conta conta;
 		if (daoCon.flagById(id) == true) {
@@ -39,6 +39,7 @@ public class serCon {
 			flag = flag + 1;
 		} else {
 			System.out.println("Invalid value");
+                        return null;
 		}
 		if (flag == 2) {
 			daoCon.Deposito(id, deposito);
@@ -66,26 +67,32 @@ public class serCon {
 
 	}
 
-	public void transferencia(int idOrigin, int idDestiny, double valor) {
+	public double[] transferencia(int idOrigin, int idDestiny, double valor) {
 		Conta con = daoCon.getConById(idOrigin);
+                Conta con2 = daoCon.getConById(idDestiny);
+              
 		if (con.getSaldo() > valor) {
 			daoCon.transfer(idOrigin, idDestiny, valor);
+                        
+                        double[] valores = {con.getSaldo(),con2.getSaldo()};
+                        return valores;
 		} else {
 			System.out.println("Your balance isn't suficient");
+                        return null;
 		}
-
 	}
 
 	public boolean flagById(int id) {
 		return daoCon.flagById(id);
 	}
 
-	public void idInf(int id) {
+	public Conta idInf(int id) {
 		if (daoCon.flagById(id) == true) {
-			daoCon.idInf(id);
-
+			Conta con = daoCon.idInf(id);
+                        return con;
 		} else {
 			System.out.println("Invalid id");
+                        return null;
 		}
 
 	}

@@ -9,7 +9,7 @@ public class serCli {
 	Dao_con daoCon = new Dao_con();
 	
 
-	public void Addcliente(long cpf, String nome) {
+	public boolean Addcliente(long cpf, String nome) {
 
 		Cliente cliente = new Cliente();
 		cliente.setName(nome);
@@ -17,6 +17,7 @@ public class serCli {
 		cliente.setId(daoCli.size());
 
 		daoCli.AddClient(cliente);
+                return true;
 
 	}
 

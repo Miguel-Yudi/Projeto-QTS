@@ -26,4 +26,10 @@ class AppTest {
         double saldo = sercon.Deposito(0, 100);
         assertEquals(100, saldo);
     }
+     @Test
+    void testeDepositoNegativo() {
+        Double retorno = sercon.Deposito(0, -100);
+        assertNull(retorno);
+    }
 }
+
