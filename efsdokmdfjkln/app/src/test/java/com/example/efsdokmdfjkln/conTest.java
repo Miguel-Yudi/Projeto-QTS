@@ -19,16 +19,16 @@ public class conTest {
 
         Conta conta = service.idInf(0);
 
-        assertNotNull(conta, "Conta should not be null");
-        assertEquals(0, conta.getNumber(), "Account number should be 1");
-        assertEquals(idCliente, conta.getIdCliente(), "Owner id should match");
-        assertEquals(0.0, conta.getSaldo(), "Initial balance should be 0.0");
+        assertNotNull(conta);
+        assertEquals(0, conta.getNumber());
+        assertEquals(idCliente, conta.getIdCliente());
+        assertEquals(0.0, conta.getSaldo());
     }
-
+    
     @Test
     public void testVerContaInvalida() {
         serCon service = new serCon();
         Conta conta = service.idInf(-1);
-        assertNull(conta, "Conta should be null for an invalid account id");
+        assertNull(conta);
     }
 }

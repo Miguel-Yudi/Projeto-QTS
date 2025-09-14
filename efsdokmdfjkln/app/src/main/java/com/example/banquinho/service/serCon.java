@@ -31,7 +31,7 @@ public class serCon {
                 Conta conta;
 		if (daoCon.flagById(id) == true) {
 			flag = flag + 1;
-
+                       
 		} else {
 			System.out.println("Invalid id");
 		}
@@ -45,6 +45,8 @@ public class serCon {
 			daoCon.Deposito(id, deposito);
 		}
                 conta=daoCon.getConById(id);
+                System.out.println("deposit completed, your new balance: "
+						+ conta.getSaldo());
                         return conta.getSaldo();
 	}
 
@@ -75,6 +77,8 @@ public class serCon {
 			daoCon.transfer(idOrigin, idDestiny, valor);
                         
                         double[] valores = {con.getSaldo(),con2.getSaldo()};
+                        
+                        System.out.println("Transfer completed successfully");
                         return valores;
 		} else {
 			System.out.println("Your balance isn't suficient");

@@ -9,15 +9,36 @@ public class serCli {
 	Dao_con daoCon = new Dao_con();
 	
 
-	public boolean Addcliente(long cpf, String nome) {
+	public int Addcliente(long cpf, String nome) {
+            
+                if (nome == null || nome.isEmpty()) {
+                System.out.println("Your name cannot be empty");
+                return 1;
+    }
+                for (char letra : nome.toCharArray()) {
+                if (!Character.isLetter(letra)) {
+                System.out.println("Your name cannot have numbers or special characters");
+                return 2;
+        }
+    }
+
+             
+              String cpfStr = String.valueOf(cpf);
+              if (cpfStr.length() != 11) {
+              System.out.println("Your cpf needs to have 11 numbers");
+              return 3;
+    }
 
 		Cliente cliente = new Cliente();
-		cliente.setName(nome);
-		cliente.setCpf(cpf);
-		cliente.setId(daoCli.size());
+                cliente.setName(nome);
+                cliente.setCpf(cpf);
+                cliente.setId(daoCli.size());
 
-		daoCli.AddClient(cliente);
-                return true;
+                daoCli.AddClient(cliente);
+
+                System.out.println("Your id is " + cliente.getId());
+
+                 return 0; 
 
 	}
 
@@ -27,37 +48,6 @@ public class serCli {
 
 	public void listCli() {
 		daoCli.listCli();
-	}
-
-	public boolean checkName(String name) {
-		boolean flag = true;
-		for (char letra : name.toCharArray()) {
-			if (Character.isLetter(letra) == false) {
-				flag = false;
-			}
-			
-		}
-		if (name.equals(""))
-		{
-			flag = false;
-		}
-
-		return flag;
-
-	}
-
-	public long checkCpf(String cpf) {
-		cpf = cpf.replace("-", "").replace(".", "");
-		if (cpf.length() != 11) {
-			return 0;
-		}
-		long cpf2 = 0;
-		try {
-			cpf2 = Long.parseLong(cpf);
-		} catch (Exception e) {
-			return 0;
-		}
-		return cpf2;
 	}
 
 	public boolean idInf(String id) {

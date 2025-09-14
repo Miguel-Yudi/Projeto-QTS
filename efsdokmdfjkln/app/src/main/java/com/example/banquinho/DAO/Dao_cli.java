@@ -48,7 +48,6 @@ public class Dao_cli {
 	}
 
 	public int size() {
-		System.out.println("Your id is " + clientes.size());
 		return clientes.size();
 	}
 	public boolean flagById(int id) {

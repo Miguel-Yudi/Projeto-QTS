@@ -13,31 +13,43 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CliTest {
     private serCli sercli = new serCli();
-    boolean addcli;
-    long checkcpf;
-    Boolean checknome;
-    String cpf;
+    int addcli;
+    Long cpf;
     String nome;
     
     @Test
     public void testCriarCliente() {
-        cpf = "12312312312";
+        cpf = 12312312312L;
         nome = "Beatriz";
-        checknome = sercli.checkName(nome);
-        assertTrue(checknome);
-        checkcpf = sercli.checkCpf(cpf);
-        assertNotEquals(checkcpf, 0); 
-        addcli = sercli.Addcliente(checkcpf, nome);
-        assertTrue(addcli);
+        addcli = sercli.Addcliente(cpf, nome);
+        assertEquals(addcli, 0);
+    }
+    
+     @Test
+    public void testNomeNulo() {
+    cpf = 12312312333L;
+    nome = "";
+    addcli = sercli.Addcliente(cpf, nome);
+    assertNotEquals(addcli, 0);
+    assertEquals(addcli, 1);
     }
     
     @Test
-    public void testErroCliente() {
-    cpf = "123";
-    nome = "Bea021";
-    checknome = sercli.checkName(nome);
-    assertFalse(checknome);
-    checkcpf = sercli.checkCpf(cpf);
-    assertEquals(checkcpf, 0);
+    public void testErroNome() {
+    cpf = 12312312333L;
+    nome = "Bea00";
+    addcli = sercli.Addcliente(cpf, nome);
+    assertNotEquals(addcli, 0);
+    assertEquals(addcli, 2);
+    }
+    
+    @Test
+    public void testErroCpf() {
+    cpf = 12312L;
+    nome = "Bea";
+    addcli = sercli.Addcliente(cpf, nome);
+    assertNotEquals(addcli, 0);
+    assertEquals(addcli, 3);
 }
+    
 }
